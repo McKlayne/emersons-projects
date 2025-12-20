@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emerson's Process for How to Do Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #006400 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #C0C0C0;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .step {
+            background: #f8f9fa;
+            border-left: 6px solid #C0C0C0;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #40E0D0;
+            color: #333;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+        .step-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .step-content {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 15px;
+            margin-left: 55px;
+        }
+
+        .sub-steps {
+            margin-top: 20px;
+            margin-left: 55px;
+            padding-left: 20px;
+            border-left: 3px solid #C0C0C0;
+        }
+
+        .sub-step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .sub-step-number {
+            display: inline-block;
+            background: #40E0D0;
+            color: #333;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .sub-step-text {
+            display: inline-block;
+            vertical-align: middle;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .examples {
+            margin-top: 20px;
+            margin-left: 55px;
+            padding-left: 20px;
+            border-left: 3px solid #C0C0C0;
+        }
+
+        .example-item {
+            margin: 12px 0;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .example-item::before {
+            content: "• ";
+            color: #C0C0C0;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        .final-step {
+            background: linear-gradient(135deg, #8B0000 0%, #006400 50%, #000000 100%);
+            color: white;
+            border-left: 6px solid #C0C0C0;
+        }
+
+        .final-step .step-number {
+            background: #40E0D0;
+            color: #333;
+        }
+
+        .final-step .step-title {
+            color: white;
+        }
+
+        .final-step .step-content {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #40E0D0;
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            background: #30D0C0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .print-button:active {
+            transform: translateY(0);
+        }
+
+        .index-card-button {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: #40E0D0;
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+        }
+
+        .index-card-button:hover {
+            background: #30D0C0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .index-card-button:active {
+            transform: translateY(0);
+        }
+
+        .hide-for-index-card {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .step-title {
+                font-size: 1.2em;
+            }
+
+            .step-content,
+            .sub-steps,
+            .examples {
+                margin-left: 0;
+            }
+
+            .print-button {
+                top: 10px;
+                right: 10px;
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            .index-card-button {
+                top: 60px;
+                right: 10px;
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media print {
+            @page {
+                size: 11in 8.5in landscape;
+                margin: 0.4in;
+            }
+
+            body {
+                background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #006400 100%);
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .print-button {
+                display: none;
+            }
+
+            .container {
+                max-width: 100%;
+                margin: 0;
+                padding: 30px;
+                box-shadow: none;
+                border-radius: 0;
+                background: white;
+            }
+
+            h1 {
+                font-size: 2.8em;
+                margin-bottom: 40px;
+                page-break-after: avoid;
+            }
+
+            .step {
+                page-break-inside: avoid;
+                margin-bottom: 25px;
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            .step:hover {
+                transform: none;
+            }
+
+            .step-title {
+                font-size: 1.6em;
+            }
+
+            .step-content {
+                font-size: 1.2em;
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 1.4em;
+            }
+
+            .sub-step-number {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 1em;
+            }
+
+            .sub-step-text {
+                font-size: 1.1em;
+            }
+
+            .example-item {
+                font-size: 1.05em;
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            .sub-steps {
+                margin-top: 15px;
+                margin-left: 55px;
+            }
+
+            .examples {
+                margin-top: 15px;
+                margin-left: 55px;
+            }
+
+            .sub-step {
+                margin: 12px 0;
+                padding: 12px;
+            }
+
+            /* Ensure colors print */
+            .step-number,
+            .sub-step-number {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .final-step {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .step {
+                border-left: 6px solid #C0C0C0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .sub-steps,
+            .examples {
+                border-left: 3px solid #C0C0C0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .example-item::before {
+                color: #C0C0C0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            h1 {
+                border-bottom: 4px solid #C0C0C0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        @media print {
+            body.index-card-print {
+                background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #006400 100%);
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            body.index-card-print .print-button,
+            body.index-card-print .index-card-button {
+                display: none;
+            }
+
+            body.index-card-print .container {
+                max-width: 100%;
+                margin: 0;
+                padding: 15px;
+                background: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            body.index-card-print h1 {
+                font-size: 1.4em;
+                margin-bottom: 20px;
+                padding-bottom: 10px;
+                border-bottom: 3px solid #C0C0C0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            body.index-card-print .step {
+                page-break-inside: avoid;
+                margin-bottom: 12px;
+                padding: 12px;
+                box-shadow: none;
+                border-left: 4px solid #C0C0C0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            body.index-card-print .step-title {
+                font-size: 1.1em;
+                margin-bottom: 0;
+            }
+
+            body.index-card-print .step-number {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 1.1em;
+                margin-right: 10px;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            body.index-card-print .step-content,
+            body.index-card-print .sub-steps,
+            body.index-card-print .examples {
+                display: none;
+            }
+
+            body.index-card-print .final-step {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    <button class="index-card-button" onclick="printIndexCard()">📇 Index Card</button>
+    <div class="container">
+        <h1>Emerson's Process for How to Do Research</h1>
+        
+        <div class="steps-container">
+            <div class="step">
+                <span class="step-number">1</span>
+                <span class="step-title">Choose a Topic</span>
+                <div class="step-content">Select a subject that interests you and that you want to learn more about.</div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <span class="step-title">Define or Narrow the Topic</span>
+                <div class="step-content">Refine your topic to make it more specific and manageable for research.</div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-title">Ask Questions</span>
+                <div class="step-content">Develop questions that will guide your research and help you discover what you need to know.</div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <span class="step-title">Start Searching</span>
+                <div class="step-content">
+                    <div class="sub-steps">
+                        <div class="sub-step">
+                            <span class="sub-step-number">a</span>
+                            <span class="sub-step-text">Start with a prayer</span>
+                        </div>
+                        <div class="sub-step">
+                            <span class="sub-step-number">b</span>
+                            <span class="sub-step-text">Start with your brain</span>
+                        </div>
+                        <div class="sub-step">
+                            <span class="sub-step-number">c</span>
+                            <span class="sub-step-text">Use books</span>
+                        </div>
+                        <div class="sub-step">
+                            <span class="sub-step-number">d</span>
+                            <span class="sub-step-text">Use technology</span>
+                        </div>
+                        <div class="sub-step">
+                            <span class="sub-step-number">e</span>
+                            <span class="sub-step-text">Interview people</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">5</span>
+                <span class="step-title">Store Notes</span>
+                <div class="step-content">Keep organized records of your findings, sources, and insights as you research.
+                    <div class="examples">
+                        <div class="example-item">Use a notebook or journal to write down key points and quotes</div>
+                        <div class="example-item">Create digital notes in apps like Evernote, OneNote, or Notion</div>
+                        <div class="example-item">Use index cards to organize information by topic or source</div>
+                        <div class="example-item">Keep a research log with dates, sources, and page numbers</div>
+                        <div class="example-item">Highlight and annotate important passages in books or articles</div>
+                        <div class="example-item">Create a bibliography as you go to track all your sources</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">6</span>
+                <span class="step-title">Synthesize, or Put It Together</span>
+                <div class="step-content">Combine and organize your research findings to create a coherent understanding of your topic.
+                    <div class="examples">
+                        <div class="example-item">Create an outline organizing your main points and supporting evidence</div>
+                        <div class="example-item">Write a summary paragraph connecting different sources and ideas</div>
+                        <div class="example-item">Make a mind map or concept map showing relationships between ideas</div>
+                        <div class="example-item">Develop a thesis statement that captures your main conclusion</div>
+                        <div class="example-item">Create a timeline or flowchart if your topic involves a process or history</div>
+                        <div class="example-item">Compare and contrast different viewpoints you discovered</div>
+                        <div class="example-item">Identify patterns, themes, or common threads across your sources</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">7</span>
+                <span class="step-title">Share Your Research with Others</span>
+                <div class="step-content">Present your findings and insights to others, contributing to collective knowledge.
+                    <div class="examples">
+                        <div class="example-item">Write a research paper or essay explaining your findings</div>
+                        <div class="example-item">Give a presentation or speech to your class or group</div>
+                        <div class="example-item">Create a poster or visual display of your research</div>
+                        <div class="example-item">Start a blog or website to share your insights</div>
+                        <div class="example-item">Participate in a discussion or debate about your topic</div>
+                        <div class="example-item">Teach what you learned to someone else</div>
+                        <div class="example-item">Create a video or podcast explaining your research</div>
+                        <div class="example-item">Present at a conference or research symposium</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step final-step">
+                <span class="step-number">8</span>
+                <span class="step-title">Give Thanks to God</span>
+                <div class="step-content">By prayer and telling Him thank you for giving more light and knowledge, or anyone who helps you.</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Ensure print dialog opens with landscape orientation
+        function printInfographic() {
+            // Remove index card class and style if they exist
+            document.body.classList.remove('index-card-print');
+            const styleEl = document.getElementById('index-card-print-style');
+            if (styleEl) {
+                styleEl.remove();
+            }
+            window.print();
+        }
+        
+        // Print index card version
+        function printIndexCard() {
+            // Add class to body for index card print styles
+            document.body.classList.add('index-card-print');
+            
+            // Add a style element to set page size for index cards
+            let style = document.createElement('style');
+            style.id = 'index-card-print-style';
+            style.textContent = '@media print { @page { size: 4in 6in; margin: 0.2in; } }';
+            document.head.appendChild(style);
+            
+            window.print();
+            
+            // Clean up after printing
+            setTimeout(function() {
+                document.body.classList.remove('index-card-print');
+                const styleEl = document.getElementById('index-card-print-style');
+                if (styleEl) {
+                    styleEl.remove();
+                }
+            }, 100);
+        }
+        
+        // Update print button to use the function
+        document.addEventListener('DOMContentLoaded', function() {
+            const printBtn = document.querySelector('.print-button');
+            if (printBtn) {
+                printBtn.onclick = printInfographic;
+            }
+        });
+    </script>
+</body>
+</html>
