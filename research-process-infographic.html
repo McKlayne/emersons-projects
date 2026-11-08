@@ -258,129 +258,139 @@
             }
         }
 
+        /*
+         * Default print layout: the whole infographic on exactly ONE
+         * landscape US Letter page (also fits A4 landscape). The steps
+         * flow into three compact columns instead of one long strip.
+         */
         @media print {
             @page {
-                size: 11in 8.5in landscape;
-                margin: 0.4in;
+                size: letter landscape;
+                margin: 0.35in;
             }
 
+            html,
             body {
-                background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #006400 100%);
+                background: white;
                 padding: 0;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                margin: 0;
+                min-height: 0;
             }
 
-            .print-button {
+            .print-button,
+            .index-card-button {
                 display: none;
             }
 
             .container {
                 max-width: 100%;
                 margin: 0;
-                padding: 30px;
+                padding: 0;
                 box-shadow: none;
                 border-radius: 0;
                 background: white;
             }
 
             h1 {
-                font-size: 2.8em;
-                margin-bottom: 40px;
+                font-size: 16pt;
+                margin-bottom: 10px;
+                padding-bottom: 6px;
+                border-bottom: 3px solid #C0C0C0;
                 page-break-after: avoid;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .steps-container {
+                display: block;
+                column-count: 3;
+                column-gap: 16px;
             }
 
             .step {
+                break-inside: avoid;
                 page-break-inside: avoid;
-                margin-bottom: 25px;
+                margin: 0 0 10px 0;
                 box-shadow: none;
-                padding: 20px;
+                padding: 8px 10px;
+                border-left: 4px solid #C0C0C0;
+                border-radius: 6px;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
             .step:hover {
                 transform: none;
+                box-shadow: none;
             }
 
             .step-title {
-                font-size: 1.6em;
+                font-size: 11pt;
+                margin-bottom: 2px;
             }
 
             .step-content {
-                font-size: 1.2em;
+                font-size: 9pt;
+                margin-top: 4px;
+                margin-left: 28px;
             }
 
             .step-number {
-                width: 50px;
-                height: 50px;
-                line-height: 50px;
-                font-size: 1.4em;
-            }
-
-            .sub-step-number {
-                width: 35px;
-                height: 35px;
-                line-height: 35px;
-                font-size: 1em;
-            }
-
-            .sub-step-text {
-                font-size: 1.1em;
-            }
-
-            .example-item {
-                font-size: 1.05em;
-                padding: 10px;
-                margin: 10px 0;
-            }
-
-            .sub-steps {
-                margin-top: 15px;
-                margin-left: 55px;
-            }
-
-            .examples {
-                margin-top: 15px;
-                margin-left: 55px;
-            }
-
-            .sub-step {
-                margin: 12px 0;
-                padding: 12px;
-            }
-
-            /* Ensure colors print */
-            .step-number,
-            .sub-step-number {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .final-step {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .step {
-                border-left: 6px solid #C0C0C0;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                font-size: 9pt;
+                margin-right: 8px;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
 
             .sub-steps,
             .examples {
-                border-left: 3px solid #C0C0C0;
+                margin-top: 4px;
+                margin-left: 0;
+                padding-left: 10px;
+                border-left: 2px solid #C0C0C0;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+            }
+
+            .sub-step {
+                margin: 3px 0;
+                padding: 3px 6px;
+                box-shadow: none;
+            }
+
+            .sub-step-number {
+                width: 16px;
+                height: 16px;
+                line-height: 16px;
+                font-size: 8pt;
+                margin-right: 6px;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .sub-step-text {
+                font-size: 9pt;
+            }
+
+            .example-item {
+                font-size: 8.5pt;
+                padding: 2px 4px;
+                margin: 2px 0;
+                box-shadow: none;
             }
 
             .example-item::before {
                 color: #C0C0C0;
+                font-size: 1em;
+                margin-right: 4px;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
 
-            h1 {
-                border-bottom: 4px solid #C0C0C0;
+            .final-step {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -405,6 +415,14 @@
                 background: white;
                 box-shadow: none;
                 border-radius: 0;
+            }
+
+            /* Index card keeps a single-column flow (default print uses 3 columns) */
+            body.index-card-print .steps-container {
+                display: flex;
+                flex-direction: column;
+                column-count: auto;
+                gap: 30px;
             }
 
             body.index-card-print h1 {
